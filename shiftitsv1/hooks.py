@@ -25,8 +25,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/shiftitsv1/css/shiftitsv1.css"
-# app_include_js = "/assets/shiftitsv1/js/shiftitsv1.js"
+app_include_css = "/assets/shiftitsv1/css/shift.css"
+app_include_js = "/assets/shiftitsv1/js/shift.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/shiftitsv1/css/shiftitsv1.css"
