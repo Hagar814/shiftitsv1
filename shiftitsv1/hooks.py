@@ -23,10 +23,17 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
-
+# desk_include_js = "/assets/shiftitsv1/js/home/router.js"
 # include js, css files in header of desk.html
 app_include_css = "/assets/shiftitsv1/css/shift.css"
-app_include_js = "/assets/shiftitsv1/js/shift.js"
+#app_include_js = "/assets/shiftitsv1/js/shift.js"
+app_include_js = [
+    "/assets/shiftitsv1/js/shift.js",
+    "/assets/shiftitsv1/js/router.js",
+    "/assets/shiftitsv1/js/page.js",
+    "/assets/shiftitsv1/js/workspace.js"]
+
+
 
 # include js, css files in header of web template
 # web_include_css = "/assets/shiftitsv1/css/shiftitsv1.css"
