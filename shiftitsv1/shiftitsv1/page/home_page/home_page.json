@@ -4,7 +4,7 @@
  "docstatus": 0,
  "doctype": "Page",
  "idx": 0,
- "modified": "2025-07-11 21:07:26.432083",
+ "modified": "2025-07-15 19:25:31.543676",
  "modified_by": "Administrator",
  "module": "ShiftITsV1",
  "name": "home-page",
@@ -14,6 +14,6 @@
  "script": null,
  "standard": "Yes",
  "style": null,
- "system_page": 0,
+ "system_page": 1,
  "title": "Home page"
 }

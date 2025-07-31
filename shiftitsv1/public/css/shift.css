@@ -495,3 +495,87 @@ button.btn.btn-primary.primary-action {
     color: white !important; /* text color */
   }
   
+
+/* Reports */
+/* .custom-dropdown .dropdown-menu {
+  display: none;
+}
+
+.custom-dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  display: none;
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+  z-index: 1001;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+} */
+/* Ensure submenu positions relative to parent correctly */
+/* Container holding the mega menu */
+.reports-wrapper {
+  position: relative;
+}
+
+.reports-wrapper .mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  white-space: nowrap;
+  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Show on hover */
+.reports-wrapper:hover .mega-menu {
+  display: flex;
+}
+
+/* Submenu items */
+.submenu-items {
+  display: flex;
+  gap: 40px;
+}
+
+/* Each module (like Selling, Stock...) */
+.has-side-submenu {
+  position: relative;
+}
+
+.has-side-submenu > a {
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.side-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Show child submenu on hover */
+.has-side-submenu:hover .side-submenu {
+  display: block;
+}

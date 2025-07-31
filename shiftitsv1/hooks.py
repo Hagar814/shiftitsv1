@@ -33,7 +33,9 @@ app_include_js = [
     "/assets/shiftitsv1/js/page.js",
     "/assets/shiftitsv1/js/workspace.js"]
 
-
+override_doctype_class = {
+    "User": "shiftitsv1.overrides.user.CustomUser"
+}
 
 # include js, css files in header of web template
 # web_include_css = "/assets/shiftitsv1/css/shiftitsv1.css"
