@@ -31,7 +31,8 @@ app_include_js = [
     "/assets/shiftitsv1/js/shift.js",
     "/assets/shiftitsv1/js/router.js",
     "/assets/shiftitsv1/js/page.js",
-    "/assets/shiftitsv1/js/workspace.js"]
+    "/assets/shiftitsv1/js/workspace.js",
+   "/assets/shiftitsv1/js/sales_order_calendar.js"]
 
 override_doctype_class = {
     "User": "shiftitsv1.overrides.user.CustomUser"
