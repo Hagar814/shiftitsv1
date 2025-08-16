@@ -1,52 +1,5 @@
 
 
-// change navbar color according to the path
-function applyNavbarColor(path) {
-  let color = '#333'; // default
-
-  if (path === '/app/home') {
-    color = '#a1ebc8';
-  } else if (path === '/app/overview') {
-    color = '#e6cea1';
-  } else if (path === '/app/accounting') {
-    color = '#93b3d4';
-  }
-  else if (path === '/app/buying') {
-    color = '#ade6a1';
-  }
-  else if (path === '/app/selling') {
-    color = '#ece390';
-  }
-  else if (path === '/app/stock') {
-    color = '#dd96c8';
-  }
-  const styleId = "dynamic-navbar-color";
-  let existingStyle = document.getElementById(styleId);
-  if (existingStyle) existingStyle.remove();
-
-  const style = document.createElement("style");
-  style.id = styleId;
-  style.innerHTML = `
-    header.navbar.navbar-expand {
-      background-color: ${color} !important;
-    }
-    .navbar.navbar-expand {
-      background-color: ${color} !important;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-function initNavbarColorListener() {
-  // Run on first load
-  applyNavbarColor(window.location.pathname);
-
-  // Hook into route changes
-  frappe.router.on('change', () => {
-    applyNavbarColor(window.location.pathname);
-  });
-}
-
 //  replace search word 
 function updateSearchPlaceholder() {
 let attempts = 0;
@@ -65,130 +18,213 @@ const tryUpdate = () => {
 tryUpdate();
 }
 
-// accounting submenu
-function addAccountingSubmenu() {
-  const check = setInterval(() => {
-    const accountingBtn = document.querySelector('a[href="/app/accounting"]');
-    if (!accountingBtn) return;
+
+function addModuleSubmenu(moduleName, items) {
+ const check = setInterval(() => {
+    const navbarButtons = document.querySelector('.custom-navbar-buttons.d-flex.align-items-center.gap-3.ml-3');
+    if (!navbarButtons) return;
+
+    // Find module button by text
+    const moduleBtn = Array.from(navbarButtons.querySelectorAll('a, button, div'))
+      .find(el => el.textContent.trim().toLowerCase() === moduleName.toLowerCase());
+
+    if (!moduleBtn) return;
 
     clearInterval(check);
 
+    // Wrap the module button
     const wrapper = document.createElement('div');
-    wrapper.classList.add('accounting-wrapper');
-    accountingBtn.parentNode.insertBefore(wrapper, accountingBtn);
-    wrapper.appendChild(accountingBtn);
+    wrapper.classList.add(`${moduleName.toLowerCase()}-wrapper`);
+    moduleBtn.parentNode.insertBefore(wrapper, moduleBtn);
+    wrapper.appendChild(moduleBtn);
 
+    // Create mega menu
     const megaMenu = document.createElement('div');
-    megaMenu.classList.add('accounting-mega-menu');
+    megaMenu.classList.add(`${moduleName.toLowerCase()}-mega-menu`);
 
-    megaMenu.innerHTML = `
-    <div class="submenu-group">
-      <div class="submenu-items">
-        <div class="has-side-submenu">
-          <a href="#">Cost Center and Budgeting</a>
-          <div class="side-submenu">
-            <a href="/app/cost-center">Chart of Cost Centers</a>
-            <a href="/app/budget">Budget</a>
-            <a href="/app/accounting-dimension">Accounting Dimension</a>
-            <a href="/app/cost-center-allocation">Cost Center Allocation</a>
-            <a href="/app/query-report/Budget Variance Report">Budget Variance Report</a>
-            <a href="/app/monthly-distribution">Monthly Distribution</a>
-          </div>
-        </div>
-        <div class="has-side-submenu">
-          <a href="#">Payments</a>
-          <div class="side-submenu">
-            <a href="/app/payment-entry">Payment Entry</a>
-            <a href="/app/journal-entry">Journal Entry</a>
-            <a href="/app/journal-entry-template">Journal Entry Template</a>
-            <a href="/app/terms-and-conditions">Terms and Conditions</a>
-            <a href="/app/mode-of-payment">Mode of Payment</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
+    // Build submenu list items
+    let listHTML = '<ol class="sub-menu">';
+    items.forEach((item, index) => {
+      const colorClass = ['item--a', 'item--b', 'item--c'][index % 3]; // cycle colors
+      listHTML += `
+        <li class="menu-item ${colorClass}">
+          <a href="${item.href}"><span>${item.label}</span></a>
+        </li>
+      `;
+    });
+    listHTML += '</ol>';
 
+    megaMenu.innerHTML = listHTML;
     wrapper.appendChild(megaMenu);
   }, 300);
 }
 
-// Menu In the navbar
+// --- Add for each module ---
+
+// Accounting
+addModuleSubmenu("Accounting", [
+  { label: "Payment Entry", href: "/app/payment-entry" },
+  { label: "Journal Entry", href: "/app/journal-entry" },
+  { label: "Sales Invoice", href: "/app/sales-invoice" },
+  { label: "Purchase Invoice", href: "/app/purchase-invoice" },
+  { label: "Cost Center", href: "/app/cost-center" }
+]);
+
+// Buying
+addModuleSubmenu("Buying", [
+  { label: "Purchase Order", href: "/app/purchase-order" },
+  { label: "Supplier", href: "/app/supplier" }
+]);
+
+// Selling
+addModuleSubmenu("Selling", [
+  { label: "Sales Order", href: "/app/sales-order" },
+  { label: "Customer", href: "/app/customer" }
+]);
+
+// Stock
+addModuleSubmenu("Stock", [
+  { label: "Stock Entry", href: "/app/stock-entry" },
+  { label: "Stock Ledger Entry", href: "/app/stock-ledger-entry" },
+  { label: "Warehouse", href: "/app/warehouse" },
+  { label: "Purchase Receipt", href: "/app/purchase-receipt" },
+  { label: "Delivery Note", href: "/app/delivery-note" },
+  { label: "Closing Stock Balance", href: "/app/closing-stock-balance" },
+  { label: "Item", href: "/app/item" },
+  { label: "Item Attribute", href: "/app/item-attribute" },
+  { label: "Item Price", href: "/app/item-price" },
+  { label: "Serial No", href: "/app/serial-no" },
+  { label: "Batch", href: "/app/batch" },
+  { label: "Serial and Batch Bundle", href: "/app/serial-and-batch-bundle" }
+]);
+
 // function injectCustomButtonsIntoNavbar() {
 //   const tryInject = setInterval(() => {
 //     const navbarContainer = document.querySelector('header.navbar .container');
 //     const logo = navbarContainer?.querySelector('.navbar-brand');
+//     const navbar = navbarContainer?.querySelector('.navbar-nav');
 
-//     if (!navbarContainer || !logo) {
-//       console.log('[✘] Navbar or logo not found. Retrying...');
-//       return;
-//     }
+//     if (!navbarContainer || !logo || !navbar || !frappe.workspaces) return;
 
-//     // Prevent duplicate injection
 //     if (document.querySelector('.custom-navbar-buttons')) {
 //       clearInterval(tryInject);
 //       return;
 //     }
 
-//     // Create a container for the buttons
+//     // 🔹 1. Inject Workspace Buttons
 //     const container = document.createElement('div');
 //     container.className = 'custom-navbar-buttons d-flex align-items-center gap-3 ml-3';
 
-//     // Define your custom buttons (label + URL)
-//     const navItems = [
-//       { label: 'Home', href: '/app' },
-//       { label: 'Overview', href: '/app/overview' },
-//       { label: 'Accounting', href: '/app/accounting' },
-//       { label: 'Stock', href: '/app/stock' },
-//       { label: 'Payables', href: '/app/accounting/payables' },
-//       { label: 'Receivables', href: '/app/accounting/receivables' },
-//       { label: 'Reports', href: '/app/accounting/reports' }
-//     ];
-
-//     // Create and append each button
-//     navItems.forEach(item => {
+//     const workspaceItems = Object.values(frappe.workspaces).filter(p => p.parent_page === "");
+//     workspaceItems.forEach(item => {
 //       const btn = document.createElement('a');
-//       btn.href = item.href;
-//       btn.textContent = item.label;
+//       const slug = frappe.router.slug(item.title);
+//       btn.href = item.public ? `/app/${slug}` : `/app/private/${slug}`;
+//       btn.textContent = __(item.title);
 //       btn.className = 'btn btn-outline-light rounded px-3 py-1';
 //       container.appendChild(btn);
 //     });
 
-//     // Inject after logo
-//     logo.insertAdjacentElement('afterend', container);
+//     // 🔹 2. Create Reports Button Wrapper
+//     const reportsWrapper = document.createElement('div');
+//     reportsWrapper.className = 'dropdown custom-dropdown reports-wrapper position-relative ml-3';
+
+//     const reportsBtn = document.createElement('a');
+//     reportsBtn.href = '/app/report';
+//     reportsBtn.className = 'btn btn-outline-light dropdown-toggle';
+//     reportsBtn.textContent = 'Reports';
+
+//     // Mega Menu
+//     const megaMenu = document.createElement('div');
+//     megaMenu.className = 'mega-menu submenu-group';
+//     megaMenu.style.display = 'none';
+
+//     // Show/hide mega menu on hover
+//     reportsWrapper.addEventListener('mouseenter', () => {
+//       megaMenu.style.display = 'flex';
+//     });
+//     reportsWrapper.addEventListener('mouseleave', () => {
+//       megaMenu.style.display = 'none';
+//     });
+
+//     // Submenu container
+//     const submenuItems = document.createElement('div');
+//     submenuItems.className = 'submenu-items';
+
+//     // 🔹 3. Fetch reports per module
+//     frappe.call('shiftitsv1.api.get_reports_by_module')
+//       .then(r => {
+//         const modules = r.message || {};
+
+//         Object.entries(modules).forEach(([module, reports]) => {
+//           const moduleGroup = document.createElement('div');
+//           moduleGroup.className = 'has-side-submenu';
+
+//           const moduleLabel = document.createElement('a');
+//           moduleLabel.href = '#';
+//           moduleLabel.textContent = module;
+
+//           const sideSubmenu = document.createElement('div');
+//           sideSubmenu.className = 'side-submenu';
+
+//           reports.forEach(report => {
+//             const reportLink = document.createElement('a');
+//             reportLink.href = '/app/report/' + encodeURIComponent(report.name);
+
+//             reportLink.textContent = report.name;
+//             sideSubmenu.appendChild(reportLink);
+//           });
+
+//           moduleGroup.appendChild(moduleLabel);
+//           moduleGroup.appendChild(sideSubmenu);
+//           submenuItems.appendChild(moduleGroup);
+//         });
+
+//         megaMenu.appendChild(submenuItems);
+//         reportsWrapper.appendChild(reportsBtn);
+//         reportsWrapper.appendChild(megaMenu);
+//         container.appendChild(reportsWrapper);
+//         logo.insertAdjacentElement('afterend', container);
+
+//         console.log('[✔] Workspace + Reports injected into navbar');
+//       });
+
 //     clearInterval(tryInject);
-//     console.log('[✔] Custom buttons injected into navbar');
 //   }, 300);
 // }
+
 function injectCustomButtonsIntoNavbar() {
   const tryInject = setInterval(() => {
     const navbarContainer = document.querySelector('header.navbar .container');
     const logo = navbarContainer?.querySelector('.navbar-brand');
-    const navbar = navbarContainer?.querySelector('.navbar-nav');
 
-    if (!navbarContainer || !logo || !navbar || !frappe.workspaces) return;
+    if (!navbarContainer || !logo) return;
 
     if (document.querySelector('.custom-navbar-buttons')) {
       clearInterval(tryInject);
       return;
     }
 
-    // 🔹 1. Inject Workspace Buttons
+    // 🔹 1. Create custom container
     const container = document.createElement('div');
     container.className = 'custom-navbar-buttons d-flex align-items-center gap-3 ml-3';
 
-    const workspaceItems = Object.values(frappe.workspaces).filter(p => p.parent_page === "");
-    workspaceItems.forEach(item => {
+    // 🔹 2. Hardcoded module buttons (no href paths)
+    const modules = [
+      { title: 'Accounting' },
+      { title: 'Buying' },
+      { title: 'Selling' },
+      { title: 'Stock' }
+    ];
+
+    modules.forEach(mod => {
       const btn = document.createElement('a');
-      const slug = frappe.router.slug(item.title);
-      btn.href = item.public ? `/app/${slug}` : `/app/private/${slug}`;
-      btn.textContent = __(item.title);
+      btn.textContent = mod.title;
       btn.className = 'btn btn-outline-light rounded px-3 py-1';
       container.appendChild(btn);
     });
 
-    // 🔹 2. Create Reports Button Wrapper
+    // 🔹 3. Create Reports Button Wrapper
     const reportsWrapper = document.createElement('div');
     reportsWrapper.className = 'dropdown custom-dropdown reports-wrapper position-relative ml-3';
 
@@ -197,12 +233,10 @@ function injectCustomButtonsIntoNavbar() {
     reportsBtn.className = 'btn btn-outline-light dropdown-toggle';
     reportsBtn.textContent = 'Reports';
 
-    // Mega Menu
     const megaMenu = document.createElement('div');
     megaMenu.className = 'mega-menu submenu-group';
     megaMenu.style.display = 'none';
 
-    // Show/hide mega menu on hover
     reportsWrapper.addEventListener('mouseenter', () => {
       megaMenu.style.display = 'flex';
     });
@@ -210,47 +244,129 @@ function injectCustomButtonsIntoNavbar() {
       megaMenu.style.display = 'none';
     });
 
-    // Submenu container
     const submenuItems = document.createElement('div');
     submenuItems.className = 'submenu-items';
 
-    // 🔹 3. Fetch reports per module
-    frappe.call('shiftitsv1.api.get_reports_by_module')
-      .then(r => {
-        const modules = r.message || {};
+// 🔹 4. Fetch reports per module
+frappe.call('shiftitsv1.api.get_reports_by_module')
+  .then(r => {
+    const modules = r.message || {};
 
-        Object.entries(modules).forEach(([module, reports]) => {
-          const moduleGroup = document.createElement('div');
-          moduleGroup.className = 'has-side-submenu';
+// Custom filtering logic for each module
+const reportsByModule = {
+  "Accounts": [
+    "General Ledger",
+    "Payment Ledger",
+    "General and Payment Ledger Comparison",
+    "Supplier Ledger Summary",
+    "Customer Ledger Summary",
+    "Accounts Payable Summary",
+    "Accounts Receivable Summary",
+    "Accounts Payable",
+    "Accounts Receivable",
+    "Account Balance",
+    "Cheques and Deposits Incorrectly cleared",
+    "Gross Profit",
+    "Gross and Net Profit Report",
+    "Voucher-wise Balance",
+    "Asset Depreciation Ledger",
+    "Deferred Revenue and Expense",
+    "Inactive Sales Items",
+    "Delivered Items To Be Billed",
+    "Received Items To Be Billed",
+    "Billed Items To Be Received",
+    "Sales Payment Summary"
+  ],
+  "Stock": [
+    "Stock Balance",
+    "Stock Ledger",
+    "Stock Ledger Variance",
+    "Item Prices",
+    "Items To Be Requested",
+    "Requested Items To Be Transferred",
+    "Serial and Batch Summary",
+    "Batch-Wise Balance History",
+    "Batch Item Expiry Status"
+  ],
+  "Selling": [
+    "Sales order",
+    "Sales Analytics",
+    "Sales Order Analysis",
+    "Sales Person-wise Transaction Summary",
+    "Payment Terms Status for Sales Order",
+    "Pending SO Items For Purchase Request",
+    "Item-wise Sales History",
+    "Available Stock for Packing Items"
+  ],
+  "Buying": "ALL" // show everything
+};
 
-          const moduleLabel = document.createElement('a');
-          moduleLabel.href = '#';
-          moduleLabel.textContent = module;
+// Normalize "Accounting" -> "Accounts" just in case API uses that name
+const canonical = name => (name === "Accounting" ? "Accounts" : name);
 
-          const sideSubmenu = document.createElement('div');
-          sideSubmenu.className = 'side-submenu';
+// Desired visual order
+const desiredOrder = ["Accounts", "Stock", "Selling", "Buying"];
 
-          reports.forEach(report => {
-            const reportLink = document.createElement('a');
-            reportLink.href = '/app/report/' + encodeURIComponent(report.name);
+// Build submenu strictly in desired order
+desiredOrder.forEach(wantedName => {
+  // find the matching key from API (it might be "Accounts" or "Accounting")
+  const apiKey = Object.keys(modules).find(k => canonical(k) === wantedName);
+  if (!apiKey) return;
 
-            reportLink.textContent = report.name;
-            sideSubmenu.appendChild(reportLink);
-          });
+  const canon = canonical(apiKey);
+  const reports = modules[apiKey] || [];
+  const allowed = reportsByModule[canon] === "ALL"
+    ? reports.map(r => r.name)
+    : reportsByModule[canon];
 
-          moduleGroup.appendChild(moduleLabel);
-          moduleGroup.appendChild(sideSubmenu);
-          submenuItems.appendChild(moduleGroup);
-        });
+  // wrapper div for the module
+  const moduleGroup = document.createElement('div');
+  moduleGroup.className = `${canon.toLowerCase()}-wrapper`;
+  moduleGroup.dataset.module = canon; // <-- now you have data-module if you still want CSS ordering
 
-        megaMenu.appendChild(submenuItems);
-        reportsWrapper.appendChild(reportsBtn);
-        reportsWrapper.appendChild(megaMenu);
-        container.appendChild(reportsWrapper);
-        logo.insertAdjacentElement('afterend', container);
+  // label
+  const moduleLabel = document.createElement('a');
+  moduleLabel.href = "#";
+  moduleLabel.textContent = canon; // shows "Accounts", "Stock", etc.
+  moduleGroup.appendChild(moduleLabel);
 
-        console.log('[✔] Workspace + Reports injected into navbar');
-      });
+  // side submenu
+  const sideSubmenu = document.createElement('div');
+  sideSubmenu.className = `${canon.toLowerCase()}-mega-menu`;
+
+  const ul = document.createElement('ul');
+  ul.className = "sub-menu";
+
+  allowed.forEach(repName => {
+    const found = reports.find(r => r.name === repName);
+    if (!found) return;
+
+    const li = document.createElement('li');
+    li.className = "menu-item";
+
+    const link = document.createElement('a');
+    link.href = '/app/report/' + encodeURIComponent(found.name);
+    link.innerHTML = `<span>${found.name}</span>`;
+
+    li.appendChild(link);
+    ul.appendChild(li);
+  });
+
+  sideSubmenu.appendChild(ul);
+  moduleGroup.appendChild(sideSubmenu);
+  submenuItems.appendChild(moduleGroup);
+});
+    megaMenu.appendChild(submenuItems);
+    reportsWrapper.appendChild(reportsBtn);
+    reportsWrapper.appendChild(megaMenu);
+    container.appendChild(reportsWrapper);
+
+    // Inject into navbar
+    logo.insertAdjacentElement('afterend', container);
+
+    console.log('[✔] Reports submenu styled like modules');
+  });
+
 
     clearInterval(tryInject);
   }, 300);
@@ -258,69 +374,6 @@ function injectCustomButtonsIntoNavbar() {
 
 
 
-
-
-// function injectCustomButtonsIntoNavbar() {
-// const tryInject = setInterval(() => {
-//   const navbarContainer = document.querySelector('header.navbar .container');
-//   const logo = navbarContainer?.querySelector('.navbar-brand');
-
-//   if (!navbarContainer || !logo || !frappe.workspaces) {
-//     return;
-//   }
-
-//   // Prevent duplicate injection
-//   if (document.querySelector('.custom-navbar-buttons')) {
-//     clearInterval(tryInject);
-//     return;
-//   }
-
-//   // Create a container for the buttons
-//   const container = document.createElement('div');
-//   container.className = 'custom-navbar-buttons d-flex align-items-center gap-3 ml-3';
-
-//   // Get workspace items that are top-level (no parent_page)
-//   const workspaceItems = Object.values(frappe.workspaces).filter(page => page.parent_page === "");
-
-//   workspaceItems.forEach(item => {
-//     const btn = document.createElement('a');
-
-//     const slug = frappe.router.slug(item.title);
-//     btn.href = item.public ? `/app/${slug}` : `/app/private/${slug}`;
-//     btn.textContent = __(item.title); // support translations
-//     btn.className = 'btn btn-outline-light rounded px-3 py-1';
-
-//     container.appendChild(btn);
-//   });
-
-//   // Inject after logo
-//   logo.insertAdjacentElement('afterend', container);
-//   clearInterval(tryInject);
-//   console.log('[✔] Workspace items injected into navbar');
-// }, 300);
-// }
-
-
-// remove home sidebar
-function removeHomeSidebar() {
-  // Only apply on the /app/home route
-  if (window.location.pathname === '/app/home') {
-    const tryRemove = () => {
-      const sidebar = document.querySelector('.col-lg-2.layout-side-section');
-      if (sidebar) {
-        sidebar.remove();
-        observer.disconnect(); // stop observing once done
-      }
-    };
-
-    // Observe the DOM for dynamic content loading
-    const observer = new MutationObserver(tryRemove);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Try immediately in case it's already loaded
-    tryRemove();
-  }
-}
 
 function overrideRouterRender() {
 	const waitForRouter = setInterval(() => {
@@ -348,20 +401,11 @@ function overrideRouterRender() {
 }
 
 
-
-// frappe.router.on('change', () => {
-// setTimeout(() => {
-//   if (window.location.pathname === '/app/home') {
-//     removeHomeSidebar();
-//   }
-// }, 300);
-// });
-
 frappe.after_ajax(() => {
-  initNavbarColorListener();
+
   injectCustomButtonsIntoNavbar();
   updateSearchPlaceholder();
-  addAccountingSubmenu();
+  addModuleSubmenu();
   if (window.location.pathname === '/app/home') {
     removeHomeSidebar();
   }
@@ -385,15 +429,6 @@ frappe.after_ajax(() => {
 		sessionStorage.setItem('already_redirected_homepage', '1');
 		frappe.set_route('app/home-page');
 	}
-
-
-  // frappe.router.on('change', () => {
-  //   setTimeout(removeHomeSidebar, 300);
-  // });
-  // setTimeout(() => {
-  //   removeHomeSidebar();
-  // }, 300);
-  //setTimeout(removeHomeSidebar, 300);
 
 });
   

@@ -23,29 +23,21 @@ a[href="/app/tools"],
 a[href="/app/erpnext-settings"],
 a[href="/app/integrations"],
 a[href="/app/erpnext-integrations"],
+a[href="/app/home"],
 a[href="/app/build"] {
     display: none !important;
 }
 
-/* hidde menu sidebar */
-/* .sidebar-menu {
-    display: none !important;
-  }
+/* ================================
+   navbar Customization 
+================================== */
 
-.col-lg-2.layout-side-section {
-    display: none !important;
-} */
-/* hidde head */
-/* .row.flex.align-center.page-head-content.justify-between {
-    display: none !important;
-} */
 /* hidde logo */
 
 .navbar-brand.navbar-home {
     display: none !important;
 }
 
-/* navbar Customization */
 /* Split navbar into top and bottom sections */
 header.navbar .container {
   display: flex;
@@ -83,20 +75,11 @@ header.navbar .container {
   .moved-sidebar-items a:hover {
     color: var(--primary);
   }
+ /* Navbar background color */
+.navbar {
+  background-color: #9fdfff !important;
+}
  
-  
-
- /* change in the avatar  */
- /* .avatar-frame.standard-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-} */
 /* search */
 
 .search-bar .awesomplete input {
@@ -117,13 +100,41 @@ header.navbar .container {
     margin-left: auto;
     margin-right: 0;
   }
-  /* .form-inline.fill-width justify-content-end{
-    width: 100px !important;
-    margin-left: auto;
-    margin-right: 0;
-  }  */
 
 /* Help */
+
+/* 🎨 Cycle background colors (3 variations) for Help dropdown items */
+#toolbar-help .dropdown-item:nth-child(3n+1),
+#toolbar-help .btn-reset.dropdown-item:nth-child(3n+1) {
+  background-color: #e6f7ff !important; /* light blue */
+  font-weight: 500;
+  color: #01345a !important;
+}
+
+#toolbar-help .dropdown-item:nth-child(3n+2),
+#toolbar-help .btn-reset.dropdown-item:nth-child(3n+2) {
+  background-color: #f0fbff !important; /* very light blue */
+  font-weight: 500;
+  color: #01345a !important;
+}
+
+#toolbar-help .dropdown-item:nth-child(3n+3),
+#toolbar-help .btn-reset.dropdown-item:nth-child(3n+3) {
+  background-color: #ffffff !important; /* white reset */
+  font-weight: 500;
+  color: #01345a !important;
+  
+}
+
+/* 🔹 Hover effect overrides cycle */
+#toolbar-help .dropdown-item:hover,
+#toolbar-help .btn-reset.dropdown-item:hover {
+  background: #d4f0ff !important; 
+  color: #007b9e !important;
+  font-weight: 600;
+}
+
+
 /* Target the Help button text and hide it */
 .dropdown-help .nav-link span {
   font-size: 0 !important; /* hide the text */
@@ -166,304 +177,396 @@ header.navbar .container {
   color: gold;
 }
 
-
-
-      
-/* Home customization */
-
-/* Style the "Accounting" sidebar item */
-a.item-anchor[title="Accounting"] {
-    background-color: #93b3d4; /* Blue background */
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
+/* 🔹 Color cycle (3 variations) for dropdown items */
+#toolbar-user .dropdown-item:nth-child(3n+1),
+#toolbar-user .btn-reset.dropdown-item:nth-child(3n+1) {
+  background-color: #e6f7ff !important; /* light blue */
+  color: #01345a !important;
 }
 
-/* Style the label text */
-a.item-anchor[title="Accounting"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
+#toolbar-user .dropdown-item:nth-child(3n+2),
+#toolbar-user .btn-reset.dropdown-item:nth-child(3n+2) {
+  background-color: #f0fbff !important; /* even lighter */
+  color: #01345a !important;
 }
 
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Accounting"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
+#toolbar-user .dropdown-item:nth-child(3n+3),
+#toolbar-user .btn-reset.dropdown-item:nth-child(3n+3) {
+  background-color: #ffffff !important; /* white reset */
+  color: #01345a !important;
 }
 
-a.item-anchor[title="Accounting"]::before {
-    content: "🪙";
-    font-size: 16px;
-    margin-right: 8px;
+/* 🔹 Hover effect overrides cycle color */
+#toolbar-user .dropdown-item:hover,
+#toolbar-user .btn-reset.dropdown-item:hover {
+  background: #d4f0ff !important;
+  color: #007b9e !important;
 }
 
 
-/* Home customization */
-
-a.item-anchor[title="Home"] {
-    background-color: #a1ebc8; /* Blue background */
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
+/* Module Menu */
+/* Wrapper for each module menu */
+.accounting-wrapper,
+.buying-wrapper,
+.selling-wrapper,
+.stock-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
-/* Style the label text */
-a.item-anchor[title="Home"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
+/* Module buttons */
+.accounting-wrapper > a,
+.buying-wrapper > a,
+.selling-wrapper > a,
+.stock-wrapper > a {
+  cursor: pointer;
+  padding: 8px 16px;
+  display: inline-block;
+  font-size: 20px !important; 
+  font-weight: bold !important;
+  color: #01345a;
 }
 
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Home"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
+/* Mega menu container */
+.accounting-mega-menu,
+.buying-mega-menu,
+.selling-mega-menu,
+.stock-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .3s ease, opacity .3s ease;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 10;
+  min-width: 200px;
 }
 
-a.item-anchor[title="Home"]::before {
-    content: "🏠";
-    font-size: 16px;
-    margin-right: 8px;
-}
-
-
-/* Overview customization */
-
-a.item-anchor[title="Overview"] {
-    background-color: #e6cea1; /* Blue background */
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-}
-
-/* Style the label text */
-a.item-anchor[title="Overview"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
-}
-
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Overview"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
-}
-
-a.item-anchor[title="Overview"]::before {
-    content: "👁️";
-    font-size: 16px;
-    margin-right: 8px;
-}
-
-a.item-anchor[title="Overview"] {
-    background-color: #e6cea1; /* Blue background */
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
+/* Show menu on hover */
+.accounting-wrapper:hover .accounting-mega-menu,
+.buying-wrapper:hover .buying-mega-menu,
+.selling-wrapper:hover .selling-mega-menu,
+.stock-wrapper:hover .stock-mega-menu {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 
-
-/* Buying customization */
-
-/* Style the label text */
-a.item-anchor[title="Buying"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
+/* List styling */
+.sub-menu {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
 }
 
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Buying"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
+.sub-menu .menu-item {
+  padding: 0;
+  margin: 0;
+    font-size: 14px !important; 
+  font-weight: bold !important;
 }
 
-a.item-anchor[title="Buying"]::before {
-    content: "💵";
-    font-size: 16px;
-    margin-right: 8px;
-}
-a.item-anchor[title="Buying"] {
-    background-color: #ade6a1; 
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
+/* Menu link */
+.sub-menu .menu-item a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background .3s, padding .3s, box-shadow .3s;
+  font-size: 14px !important; /* Same as submenu text */
+  font-weight: bold !important;
 }
 
-/* Selling customization */
-a.item-anchor[title="Selling"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
+
+/* Color variations */
+.sub-menu .menu-item.item--a a {
+  background: #e0f7ff;
+}
+.sub-menu .menu-item.item--b a {
+  background: #c0efff;
+}
+.sub-menu .menu-item.item--c a {
+  background: #a0e7ff;
 }
 
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Selling"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
+/* Hover effect */
+.sub-menu .menu-item a:hover {
+  background: #fff;
+  padding-left: 28px;
+  box-shadow: inset 4px -4px 0 4px #9fdfff;
+  border-color: #f1f1f1;
 }
 
-a.item-anchor[title="Selling"]::before {
-    content: "💳 ";
-    font-size: 16px;
-    margin-right: 8px;
-}
-a.item-anchor[title="Selling"] {
-    background-color: #ece390; 
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-}
-
-/* stock customization */
-a.item-anchor[title="Stock"] .sidebar-item-label {
-    color: white;
-    font-weight: bold;
-}
-
-/* Replace the SVG icon with a heart using a ::before emoji */
-a.item-anchor[title="Stock"] .sidebar-item-icon {
-    display: none; /* Hide existing icon */
-}
-
-a.item-anchor[title="Stock"]::before {
-    content: "📦";
-    font-size: 16px;
-    margin-right: 8px;
-}
-a.item-anchor[title="Stock"] {
-    background-color: #dd96c8; 
-    border-radius: 6px;
-    padding: 6px 10px;
-    display: flex;
-    align-items: center;
-}
-
-/* accounting menu */
-/* Wrapper for accounting nav item */
-.accounting-wrapper {
-    position: relative;
-    display: inline-block;
-  }
+/* Gradient text effect */
+.sub-menu .menu-item a span {
+  background: linear-gradient(45deg, #022642, #022642);
+  -webkit-background-clip: text;
   
-  /* Main dropdown (mega menu) */
-  .accounting-mega-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 12px;
-    z-index: 1000;
-    min-width: 250px;
-    flex-direction: column;
-  }
-  
-  /* Show mega menu on hover */
-  .accounting-wrapper:hover .accounting-mega-menu {
-    display: flex;
-  }
-  
-  /* Groups inside mega menu */
-  .submenu-group {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    min-width: 200px;
-  }
-  
-  /* Each title like "Payments" or "Budgeting" */
-  .has-side-submenu {
-    position: relative;
-    padding: 8px 12px;
-  }
-  
-  .has-side-submenu > a {
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-    display: block;
-  }
-  
-  /* Inner submenu (appears to the right) */
-  .side-submenu {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    min-width: 220px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-    white-space: nowrap;
-  }
-  
-  /* Show inner submenu on hover */
-  .has-side-submenu:hover .side-submenu {
-    display: block;
-  }
-  
-  /* Links inside submenus */
-  .side-submenu a,
-  .submenu-items a {
-    display: block;
-    text-decoration: none;
-    padding: 6px 10px;
-    font-size: 13px;
-    color: #444;
-    transition: 0.2s;
-  }
-  
-  .side-submenu a:hover,
-  .submenu-items a:hover {
-    background: #f5f5f5;
-    color: var(--primary);
-    border-radius: 4px;
-    padding-left: 4px;
-  }
-
-/* Disable click and pointer on collapsible section headers */
-.section-head.collapsible {
-    pointer-events: none;
-    cursor: default;
+  -webkit-text-fill-color: transparent;
+}
+/* Increase spacing between module buttons by 50% */
+.custom-navbar-buttons.d-flex {
+  gap: 1.5rem !important; /* Default was gap-3 ≈ 1rem */
 }
 
-/* Always show the section body (override collapsed/hidden) */
-.form-section .section-body {
-    display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    opacity: 1 !important;
+
+
+/* ================================
+   Reports button
+================================== */
+.reports-wrapper {
+  position: relative;
 }
 
-/* Ensure collapsed sections appear expanded */
-.form-section.collapsible,
-.form-section.collapsible.collapsed {
-    height: auto !important;
+.reports-wrapper > a {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: #01345a !important;
+  text-decoration: none;
+  padding: 8px 14px;
+  display: inline-block;
 }
 
-/* Hide the arrow icon */
-.section-head .collapse-indicator {
-    display: none !important;
+/* ================================
+   First dropdown under Reports
+================================== */
+.reports-wrapper .mega-menu {
+  width: 180px !important;
+  display: none;                 
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 12px 16px;
+  min-width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  white-space: nowrap;
 }
 
-/* Always show desk-sidebar regardless of route */
-/* .desk-sidebar {
-	display: block !important;
-} */
-.custom-navbar-buttons .btn {
-    font-size: 14px;
-    text-transform: capitalize;
-    white-space: nowrap;
-  }
+.reports-wrapper:hover .mega-menu {
+  display: block;
+}
+
+/* ================================
+   Modules list inside Reports
+   (Stock, Selling, Accounts, Buying)
+================================== */
+.reports-wrapper .mega-menu .submenu-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0px !important;
+}
+
+/* The module label link (e.g., "Stock") */
+.reports-wrapper .mega-menu .submenu-items > div > a {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #01345a !important;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  /*border-bottom: 1px solid #a0e7ff !important;*/
+}
+
+.reports-wrapper .mega-menu .submenu-items > div:last-child > a {
+  border-bottom: none !important;
+}
+/* Submenu report items under each module */
+.reports-wrapper .mega-menu .submenu-items .side-submenu a {
+  font-size: 14px !important;
+  font-weight: normal !important;
+  padding: 5px 14px !important;
+  color: #222 !important;
+  display: block !important;
+  text-decoration: none !important;
+}
+
+/* Hover effects */
+.reports-wrapper .mega-menu .submenu-items > div > a:hover {
+  background: #f0faff !important;
+}
+
+.reports-wrapper .mega-menu .submenu-items .side-submenu a:hover {
+  background: #eef9ff !important;
+  color: #01345a !important;
+}
+
+/* ================================
+   Order of Modules (Accounting → Stock → Selling → Buying)
+   (Handled by flexbox order)
+================================== */
+.reports-wrapper .mega-menu .submenu-items > div[data-module="Accounts"] { order: 1; }
+.reports-wrapper .mega-menu .submenu-items > div[data-module="Stock"] { order: 2; }
+.reports-wrapper .mega-menu .submenu-items > div[data-module="Selling"] { order: 3; }
+.reports-wrapper .mega-menu .submenu-items > div[data-module="Buying"] { order: 4; }
+
+/* ================================
+   Module submenus (open right)
+================================== */
+.reports-wrapper .mega-menu .submenu-items > div {
+  position: relative;
+}
+
+/* The right-hand submenu container (e.g., .stock-mega-menu) */
+.reports-wrapper .mega-menu .submenu-items > div > div {
+  display: none;                 /* hidden until hover */
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-width: 260px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1001;
+}
+
+/* Show the submenu when hovering the module label */
+.reports-wrapper .mega-menu .submenu-items > div:hover > div {
+  display: block;
+}
+
+/* ================================
+   Submenu list + links (reports)
+================================== */
+.reports-wrapper .mega-menu .sub-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reports-wrapper .mega-menu .sub-menu .menu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.reports-wrapper .mega-menu .sub-menu .menu-item > a {
+  display: block;
+  padding: 8px 12px;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #01345a !important;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background .2s ease;
+  background: #fff;              /* base */
+}
+
+/* Hover highlight */
+.reports-wrapper .mega-menu .sub-menu .menu-item > a:hover {
+  background: #f0faff !important;
+}
+
+/* ================================
+   Color variations (cycle 3)
+   Works even if item--a/b/c classes are absent
+================================== */
+.reports-wrapper .mega-menu .sub-menu .menu-item.item--a > a,
+.reports-wrapper .mega-menu .sub-menu .menu-item:nth-child(3n+1) > a {
+  background: #e0f7ff;
+}
+
+.reports-wrapper .mega-menu .sub-menu .menu-item.item--b > a,
+.reports-wrapper .mega-menu .sub-menu .menu-item:nth-child(3n+2) > a {
+  background: #c0efff;
+}
+
+.reports-wrapper .mega-menu .sub-menu .menu-item.item--c > a,
+.reports-wrapper .mega-menu .sub-menu .menu-item:nth-child(3n+3) > a {
+  background: #a0e7ff;
+}
+
+/* ================================
+   Small resets to avoid conflicts
+================================== */
+/* Remove any generic row layout that might override our column */
+.submenu-items { flex-direction: column !important; }
+
+/* Neutralize overly-generic rules from elsewhere */
+.reports-wrapper .mega-menu a {
+  color: inherit;
+  padding: 0;
+  background: transparent;
+}
+
+/* But keep our intended padding/color for the specific links */
+.reports-wrapper .mega-menu .submenu-items > div > a,
+.reports-wrapper .mega-menu .sub-menu .menu-item > a {
+  padding: 8px 12px;
+  color: #01345a !important;
+}
+
+/* ================================
+   Report Submenus Slider
+================================== */
+.accounts-mega-menu .sub-menu,
+.stock-mega-menu .sub-menu,
+.selling-mega-menu .sub-menu,
+.buying-mega-menu .sub-menu {
+  max-height: 200px;          /* Show about 4 items at a time */
+  overflow-y: auto;           /* Scroll vertically */
+  scrollbar-width: thin;      /* Slim scrollbar (Firefox) */
+  scrollbar-color: #a0e7ff transparent;
+}
+
+/* For Chrome/Edge */
+.accounts-mega-menu .sub-menu::-webkit-scrollbar,
+.stock-mega-menu .sub-menu::-webkit-scrollbar,
+.selling-mega-menu .sub-menu::-webkit-scrollbar,
+.buying-mega-menu .sub-menu::-webkit-scrollbar {
+  width: 6px;
+}
+.accounts-mega-menu .sub-menu::-webkit-scrollbar-thumb,
+.stock-mega-menu .sub-menu::-webkit-scrollbar-thumb,
+.selling-mega-menu .sub-menu::-webkit-scrollbar-thumb,
+.buying-mega-menu .sub-menu::-webkit-scrollbar-thumb {
+  background-color: #a0e7ff;
+  border-radius: 4px;
+}
+.accounts-mega-menu .sub-menu::-webkit-scrollbar-track,
+.stock-mega-menu .sub-menu::-webkit-scrollbar-track,
+.selling-mega-menu .sub-menu::-webkit-scrollbar-track,
+.buying-mega-menu .sub-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: give some spacing for items */
+.accounts-mega-menu .sub-menu li,
+.stock-mega-menu .sub-menu li,
+.selling-mega-menu .sub-menu li,
+.buying-mega-menu .sub-menu li {
+  padding: 4px 0;
+}
+/* Remove the rectangle/arrow beside "Reports" */
+.reports-wrapper .dropdown-toggle::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Style Buying breadcrumb link */
+#navbar-breadcrumbs li a {
+  color: #01345a !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
 
 
+/* ================================
+    page actions 
+================================== */
 
-/* page actions */
   .custom-action-slot {
-  background-color: #f2f5fa!important;}
+  background-color: #9fdfff!important;}
 /* page actions buttons customization */
 .standard-actions.flex {
     display: flex;
@@ -494,88 +597,34 @@ button.btn.btn-primary.primary-action {
     background-color: #647be4 !important; /* green background */
     color: white !important; /* text color */
   }
-  
 
-/* Reports */
-/* .custom-dropdown .dropdown-menu {
-  display: none;
+
+/* ================================
+   Doctypes
+================================== */
+
+
+/* Disable click and pointer on collapsible section headers */
+.section-head.collapsible {
+  pointer-events: none;
+  cursor: default;
 }
 
-.custom-dropdown:hover > .dropdown-menu {
-  display: block;
+/* Always show the section body (override collapsed/hidden) */
+.form-section .section-body {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  opacity: 1 !important;
 }
 
-.dropdown-submenu {
-  position: relative;
+/* Ensure collapsed sections appear expanded */
+.form-section.collapsible,
+.form-section.collapsible.collapsed {
+  height: auto !important;
 }
 
-.dropdown-submenu .dropdown-menu {
-  display: none;
-  top: 0;
-  left: 100%;
-  margin-top: -1px;
-  z-index: 1001;
-}
-
-.dropdown-submenu:hover > .dropdown-menu {
-  display: block;
-} */
-/* Ensure submenu positions relative to parent correctly */
-/* Container holding the mega menu */
-.reports-wrapper {
-  position: relative;
-}
-
-.reports-wrapper .mega-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  z-index: 1000;
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  white-space: nowrap;
-  min-width: 300px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Show on hover */
-.reports-wrapper:hover .mega-menu {
-  display: flex;
-}
-
-/* Submenu items */
-.submenu-items {
-  display: flex;
-  gap: 40px;
-}
-
-/* Each module (like Selling, Stock...) */
-.has-side-submenu {
-  position: relative;
-}
-
-.has-side-submenu > a {
-  font-weight: 500;
-  color: #333;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.side-submenu {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  white-space: nowrap;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 5px 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-/* Show child submenu on hover */
-.has-side-submenu:hover .side-submenu {
-  display: block;
+/* Hide the arrow icon */
+.section-head .collapse-indicator {
+  display: none !important;
 }

@@ -12,6 +12,8 @@ frappe.views.Workspace = class CustomWorkspace extends frappe.views.Workspace {
 			document.querySelectorAll('.layout-side-section').forEach(el => el.classList.add('hide-side-section'));
 			document.querySelectorAll('.sidebar-toggle-btn').forEach(el => el.classList.add('hide-side-section'));
 			document.querySelectorAll('.menu-open-btn').forEach(el => el.classList.remove('hide-side-section'));
+			document.querySelectorAll('.page-head').forEach(el => el.classList.add('hide-side-section'));
+
 		} else {
 			document.querySelectorAll('.layout-side-section').forEach(el => el.classList.remove('hide-side-section'));
 			document.querySelectorAll('.sidebar-toggle-btn').forEach(el => el.classList.remove('hide-side-section'));
