@@ -166,6 +166,51 @@ header.navbar .container {
 }
 
 /* notification */
+/* 🔹 Notifications Dropdown Styling */
+.dropdown-menu.notifications-list {
+  background-color: #f0fbff !important;
+  color: #01345a !important;
+  border-radius: 8px;
+  border: 1px solid #cce7f3;
+}
+
+/* 🔹 Tabs (Notifications, Events, What's New) */
+.dropdown-menu.notifications-list .notification-item-tabs li {
+  color: #01345a !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 🔹 Active tab */
+.dropdown-menu.notifications-list .notification-item-tabs li.active {
+  border-bottom: 2px solid #01345a;
+}
+
+/* 🔹 Empty state titles */
+.dropdown-menu.notifications-list .title {
+  color: #01345a !important;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 🔹 Empty state subtitles */
+.dropdown-menu.notifications-list .subtitle {
+  color: #01345a !important;
+  opacity: 0.8;
+}
+
+/* 🔹 Icons (settings, mark-all-read) */
+.dropdown-menu.notifications-list .header-actions svg {
+  fill: #01345a !important;
+  stroke: #01345a !important;
+}
+
+/* 🔹 Generic links/buttons inside */
+.dropdown-menu.notifications-list a,
+.dropdown-menu.notifications-list span {
+  color: #01345a !important;
+}
+
     
 .dropdown-notifications .notifications-icon svg {
   display: none; /* hide current svg */
@@ -594,9 +639,97 @@ header.navbar .container {
 
 /* Override primary-action button style */
 button.btn.btn-primary.primary-action {
-    background-color: #647be4 !important; /* green background */
-    color: white !important; /* text color */
+    background-color: #01345a !important; /* green background */
+    color: #9fdfff !important;
+    font-weight: bold !important;
   }
+/* List View */
+/* Match modules submenu style */
+.custom-btn-group .dropdown-menu {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/*  Items: cycle background every 3 */
+.custom-btn-group .dropdown-menu li:nth-child(3n+1) {
+  background-color: #f9fafb;
+}
+.custom-btn-group .dropdown-menu li:nth-child(3n+2) {
+  background-color: #f1f5f9;
+}
+.custom-btn-group .dropdown-menu li:nth-child(3n+3) {
+  background-color: #e9eff5;
+}
+
+/* 🔹 Item links */
+.custom-btn-group .dropdown-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  color: #01345a !important; /* your text color */
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+/* Hover */
+.custom-btn-group .dropdown-menu a:hover {
+  background: #dbeafe; /* soft blue highlight */
+  color: #01345a !important;
+}
+
+/* Icons spacing */
+.custom-btn-group .dropdown-menu .menu-item-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* 🔹 Style for View / Create / Actions buttons */
+.btn.btn-default.ellipsis {
+  color: #01345a !important;
+  font-weight: bold !important;
+}
+/* 🎨 Cycle background colors (3 variations) for ALL dropdowns */
+.dropdown-menu .dropdown-item:nth-child(3n+1),
+.dropdown-menu .btn-reset.dropdown-item:nth-child(3n+1) {
+  background-color: #e6f7ff !important;
+  color: #01345a !important;
+  font-weight: 600;
+}
+
+.dropdown-menu .dropdown-item:nth-child(3n+2),
+.dropdown-menu .btn-reset.dropdown-item:nth-child(3n+2) {
+  background-color: #f0fbff !important;
+  color: #01345a !important;
+  font-weight: 600;
+}
+
+.dropdown-menu .dropdown-item:nth-child(3n+3),
+.dropdown-menu .btn-reset.dropdown-item:nth-child(3n+3) {
+  background-color: #ffffff !important;
+  color: #01345a !important;
+  font-weight: 600;
+}
+
+/* 🔹 Hover effect for ALL dropdowns */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .btn-reset.dropdown-item:hover {
+  background: #d4f0ff !important; 
+  color: #01345a !important;
+  font-weight: 700;
+}
+
+
+/* Keep icons aligned */
+.btn.btn-default.ellipsis svg {
+  fill: #01345a !important;
+}
 
 
 /* ================================
