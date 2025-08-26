@@ -4,7 +4,7 @@ app_publisher = "Shift ITs"
 app_description = "ShiftITsV1"
 app_email = "hagarmahoud05@gmail.com"
 app_license = "mit"
-
+app_logo_url = "/assets/shiftitsv1/images/Shift.png"
 # Apps
 # ------------------
 
