@@ -98,100 +98,7 @@ addModuleSubmenu("Stock", [
   { label: "Serial and Batch Bundle", href: "/app/serial-and-batch-bundle" }
 ]);
 
-// function injectCustomButtonsIntoNavbar() {
-//   const tryInject = setInterval(() => {
-//     const navbarContainer = document.querySelector('header.navbar .container');
-//     const logo = navbarContainer?.querySelector('.navbar-brand');
-//     const navbar = navbarContainer?.querySelector('.navbar-nav');
 
-//     if (!navbarContainer || !logo || !navbar || !frappe.workspaces) return;
-
-//     if (document.querySelector('.custom-navbar-buttons')) {
-//       clearInterval(tryInject);
-//       return;
-//     }
-
-//     // 🔹 1. Inject Workspace Buttons
-//     const container = document.createElement('div');
-//     container.className = 'custom-navbar-buttons d-flex align-items-center gap-3 ml-3';
-
-//     const workspaceItems = Object.values(frappe.workspaces).filter(p => p.parent_page === "");
-//     workspaceItems.forEach(item => {
-//       const btn = document.createElement('a');
-//       const slug = frappe.router.slug(item.title);
-//       btn.href = item.public ? `/app/${slug}` : `/app/private/${slug}`;
-//       btn.textContent = __(item.title);
-//       btn.className = 'btn btn-outline-light rounded px-3 py-1';
-//       container.appendChild(btn);
-//     });
-
-//     // 🔹 2. Create Reports Button Wrapper
-//     const reportsWrapper = document.createElement('div');
-//     reportsWrapper.className = 'dropdown custom-dropdown reports-wrapper position-relative ml-3';
-
-//     const reportsBtn = document.createElement('a');
-//     reportsBtn.href = '/app/report';
-//     reportsBtn.className = 'btn btn-outline-light dropdown-toggle';
-//     reportsBtn.textContent = 'Reports';
-
-//     // Mega Menu
-//     const megaMenu = document.createElement('div');
-//     megaMenu.className = 'mega-menu submenu-group';
-//     megaMenu.style.display = 'none';
-
-//     // Show/hide mega menu on hover
-//     reportsWrapper.addEventListener('mouseenter', () => {
-//       megaMenu.style.display = 'flex';
-//     });
-//     reportsWrapper.addEventListener('mouseleave', () => {
-//       megaMenu.style.display = 'none';
-//     });
-
-//     // Submenu container
-//     const submenuItems = document.createElement('div');
-//     submenuItems.className = 'submenu-items';
-
-//     // 🔹 3. Fetch reports per module
-//     frappe.call('shiftitsv1.api.get_reports_by_module')
-//       .then(r => {
-//         const modules = r.message || {};
-
-//         Object.entries(modules).forEach(([module, reports]) => {
-//           const moduleGroup = document.createElement('div');
-//           moduleGroup.className = 'has-side-submenu';
-
-//           const moduleLabel = document.createElement('a');
-//           moduleLabel.href = '#';
-//           moduleLabel.textContent = module;
-
-//           const sideSubmenu = document.createElement('div');
-//           sideSubmenu.className = 'side-submenu';
-
-//           reports.forEach(report => {
-//             const reportLink = document.createElement('a');
-//             reportLink.href = '/app/report/' + encodeURIComponent(report.name);
-
-//             reportLink.textContent = report.name;
-//             sideSubmenu.appendChild(reportLink);
-//           });
-
-//           moduleGroup.appendChild(moduleLabel);
-//           moduleGroup.appendChild(sideSubmenu);
-//           submenuItems.appendChild(moduleGroup);
-//         });
-
-//         megaMenu.appendChild(submenuItems);
-//         reportsWrapper.appendChild(reportsBtn);
-//         reportsWrapper.appendChild(megaMenu);
-//         container.appendChild(reportsWrapper);
-//         logo.insertAdjacentElement('afterend', container);
-
-//         console.log('[✔] Workspace + Reports injected into navbar');
-//       });
-
-//     clearInterval(tryInject);
-//   }, 300);
-// }
 
 function injectCustomButtonsIntoNavbar() {
   const tryInject = setInterval(() => {
@@ -532,98 +439,55 @@ frappe.after_ajax(() => {
   }
 })();
 
-// (function () {
-//   const originalMakeAppPage = frappe.ui.make_app_page;
+(function () {
+  console.log("HI");
+    // Run after page load
+    document.addEventListener("DOMContentLoaded", function () {
+        if (window.location.href.includes("login")) {
+            console.log("Custom login styles applied");
 
-//   frappe.ui.make_app_page = function (opts) {
-//     const page = originalMakeAppPage.call(this, opts);
-//     setTimeout(() => {
-//       movePageActionsToSidebarGap();
-//     }, 0);
-//     return page;
-//   };
+            // Navbar background + font color
+            const navbar = document.querySelector(".navbar.navbar-light.navbar-expand-lg");
+            if (navbar) {
+                navbar.style.backgroundColor = "#9fdfff";
+                navbar.style.color = "#01345a";
+                navbar.querySelectorAll("a, .navbar-brand, .nav-link").forEach(el => {
+                    el.style.color = "#01345a";
+                });
+            }
 
-//   function movePageActionsToSidebarGap() {
-//     const route = frappe.get_route_str();
-//     let tries = 0;
-//     const maxTries = 50;
+            // Page background gradient
+            const loginPage = document.getElementById("page-login");
+            if (loginPage) {
+                loginPage.style.background = "linear-gradient(135deg, rgba(255, 253, 208, 0.79) 0%, rgba(223, 249, 255, 0.89) 100%)";
+                loginPage.style.minHeight = "100vh";
+            }
 
-//     const interval = setInterval(() => {
-//       const page = frappe.ui.pages[route];
-//       const $wrapper = page?.wrapper || $(document);
+            // Inputs border + font color
+            document.querySelectorAll(".form-control").forEach(input => {
+                input.style.border = "1px solid #01345a";
+                input.style.color = "#01345a";
+            });
 
-//       const $layoutMain = $wrapper.find('.layout-main');
-//       const $sidebar = $layoutMain.find('.layout-side-section');
-//       const $pageActions = $wrapper.find('.page-actions');
-//       const $pageHeadContent = $wrapper.find('.page-head .page-head-content');
+            // Text color
+            document.querySelectorAll("body, #page-login, .page-card, .form-control, .page-card-head h4").forEach(el => {
+                el.style.color = "#01345a";
+            });
 
-//       if ($pageActions.length && $layoutMain.length && $sidebar.length) {
-//         clearInterval(interval);
-
-//         // Skip if no buttons
-//         if ($pageActions.find('button').length === 0) {
-//           console.warn('[CustomTheme] No buttons inside .page-actions — skipping.');
-//           return;
-//         }
-
-//         // Remove previous injection
-//         $layoutMain.find('.custom-action-slot').remove();
-
-//         // Create custom container
-//         const $customSlot = $('<div class="custom-action-slot"></div>');
-//         $sidebar.before($customSlot);
-
-//         // Style the custom slot
-//         $customSlot.css({
-//           width: `${$sidebar.outerWidth()}px`,
-//           minHeight: `${$sidebar.outerHeight()}px`,
-//           display: 'flex',
-//           flexDirection: 'column',
-//           gap: '12px',
-//           padding: '12px',
-//           background: '#fff',
-//           overflowY: 'auto',
-//           borderRight: '1px solid #eee',
-//         });
-
-//         // Grab button groups
-//         const $primaryAction = $pageActions.find('.primary-action').detach();
-//         const $customActions = $pageActions.find('.custom-actions').detach();
-//         const $standardActions = $pageActions.find('.standard-actions').detach();
-//         const $otherButtons = $pageActions.find('button:not(.primary-action)').detach();
-
-//         // Style all buttons
-//         const allButtons = $primaryAction
-//           .add($customActions)
-//           .add($standardActions)
-//           .add($otherButtons);
-
-//         allButtons.find('button').css({
-//           width: '100%',
-//           display: 'block',
-//         });
-
-//         // Inject in correct order
-//         if ($primaryAction.length) $customSlot.append($primaryAction);
-//         if ($customActions.length) $customSlot.append($customActions);
-//         if ($standardActions.length) $customSlot.append($standardActions);
-//         if ($otherButtons.length) $customSlot.append($otherButtons);
-
-//         // Remove leftover .page-actions (if still exists in header)
-//         if ($pageHeadContent.find('.page-actions').length) {
-//           $pageHeadContent.find('.page-actions').remove();
-//         }
-
-//         console.log('[CustomTheme] Buttons extracted and placed at top of custom-action-slot.');
-//       }
-
-//       if (++tries > maxTries) {
-//         clearInterval(interval);
-//         console.warn('[CustomTheme] Timed out waiting for layout-main/sidebar.');
-//       }
-//     }, 100);
-//   }
-// })();
-
-
-
+            // Login button
+            document.querySelectorAll(".btn.btn-primary, .btn.btn-sm.btn-primary.btn-block.btn-login").forEach(btn => {
+                btn.style.backgroundColor = "#01345a";
+                btn.style.borderColor = "#01345a";
+                btn.style.color = "#fff";
+                btn.addEventListener("mouseover", () => {
+                    btn.style.backgroundColor = "#012d4d";
+                    btn.style.borderColor = "#012d4d";
+                });
+                btn.addEventListener("mouseout", () => {
+                    btn.style.backgroundColor = "#01345a";
+                    btn.style.borderColor = "#01345a";
+                });
+            });
+        }
+    });
+})();

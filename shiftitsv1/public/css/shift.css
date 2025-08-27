@@ -762,3 +762,93 @@ button.btn.btn-primary.primary-action {
 .section-head .collapse-indicator {
   display: none !important;
 }
+
+
+
+
+
+
+
+
+
+
+/* Login page background gradient */
+#page-login {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 253, 208, 0.79) 0%,
+    rgba(223, 249, 255, 0.89) 100%
+  ) !important;
+  min-height: 100vh;
+}
+
+/* Navbar background + font color */
+.navbar.navbar-light.navbar-expand-lg {
+  background-color: #9fdfff !important;
+  color: #01345a !important;
+}
+
+.navbar.navbar-light.navbar-expand-lg a,
+.navbar.navbar-light.navbar-expand-lg .navbar-brand,
+.navbar.navbar-light.navbar-expand-lg .nav-link {
+  color: #01345a !important;
+}
+
+/* Input fields */
+.form-control {
+  border: 1px solid #01345a !important;
+  color: #01345a !important;
+   width: 80% !important;
+}
+
+/* General text color */
+.page-card,
+.page-card-head h4,
+#page-login {
+  color: #01345a !important;
+}
+
+/* Primary button (login) */
+.btn.btn-primary,
+.btn.btn-sm.btn-primary.btn-block.btn-login {
+  background-color: #01345a !important;
+  border-color: #01345a !important;
+  color: #fff !important;
+}
+
+.btn.btn-primary:hover {
+  background-color: #012d4d !important;
+  border-color: #012d4d !important;
+}
+/* Remove white background from login card */
+#page-login .page-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Remove extra white wrapper around inputs */
+#page-login .page-card-body {
+  background: transparent !important;
+}
+
+/* Optional: make inputs look cleaner without the white card */
+#page-login .form-control {
+  background: rgba(255, 255, 255, 0.7); /* light transparent input */
+  border: 1px solid #01345a;
+  color: #01345a;
+}
+
+#page-login .form-control:focus {
+  background: rgba(255, 255, 255, 0.9);
+  outline: none;
+  border-color: #012d4d;
+  box-shadow: 0 0 5px rgba(1, 52, 90, 0.5);
+}
+
+/* Keep button styling consistent */
+#page-login .btn-login {
+  background-color: #01345a !important;
+  border-color: #01345a !important;
+  color: #fff !important;
+}

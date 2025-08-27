@@ -30,20 +30,19 @@ app_include_css = "/assets/shiftitsv1/css/shift.css"
 app_include_js = [
     "/assets/shiftitsv1/js/shift.js",
     "/assets/shiftitsv1/js/router.js",
-    "/assets/shiftitsv1/js/page.js",
-    "/assets/shiftitsv1/js/workspace.js",
-   "/assets/shiftitsv1/js/sales_order_calendar.js"]
+    "/assets/shiftitsv1/js/workspace.js"]
 
 override_doctype_class = {
     "User": "shiftitsv1.overrides.user.CustomUser"
 }
 
 # include js, css files in header of web template
-# web_include_css = "/assets/shiftitsv1/css/shiftitsv1.css"
-# web_include_js = "/assets/shiftitsv1/js/shiftitsv1.js"
+#
+web_include_css = "/assets/shiftitsv1/css/shift.css"
+web_include_js = "/assets/shiftitsv1/js/shift.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "shiftitsv1/public/scss/website"
+#website_theme_scss = "shiftitsv1/public/scss/website.scss"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
