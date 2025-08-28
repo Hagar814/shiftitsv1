@@ -1,3 +1,10 @@
+body {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 253, 208, 0.79) 0%,
+    rgba(223, 249, 255, 0.89) 100%
+  ) !important;
+}
 
 /* Hide unneed links */
 
@@ -32,6 +39,12 @@ a[href="/app/build"] {
 /* ================================
    navbar Customization 
 ================================== */
+header.navbar .container {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 1rem !important; 
+  max-width: 2000px !important;
+}
 
 /* hidde logo */
 
@@ -84,13 +97,13 @@ header.navbar .container {
 /* search */
 
 .search-bar .awesomplete input {
-	width: 200px !important; 
+	width: 300px !important; 
 	padding-left: 36px;
 	height: 32px !important;         
 	border-radius: 8px !important;   
 	background-color: #fdf6e3 !important; 
 	font-size: 14px !important;
-	border: 1px solid #ccc !important;
+	border: 2px solid #01345a !important;
 	box-shadow: none !important;
 }
 .awesomplete {
@@ -610,7 +623,9 @@ header.navbar .container {
 /* ================================
     page actions 
 ================================== */
-
+.page-head.flex {
+  display: none !important;
+}
   .custom-action-slot {
   background-color: #9fdfff!important;}
 /* page actions buttons customization */
@@ -763,13 +778,65 @@ button.btn.btn-primary.primary-action {
   display: none !important;
 }
 
+/* frappe list */
+.frappe-list .list-row-head {
+  color: #01345a !important;
+}
 
+/* 1st row style */
+.frappe-list .list-row-container:nth-child(3n+1) {
+  background-color: #f9fafb;
+}
 
+/* 2nd row style */
+.frappe-list .list-row-container:nth-child(3n+2) {
+  background-color: #f1f5f9;
+}
 
+/* 3rd row style */
+.frappe-list .list-row-container:nth-child(3n+3) {
+  background-color: #e9eff5;
+}
 
+/* ================================
+   Documnet
+================================== */
+.form-tabs-list .nav-link {
+  color: #01345a !important;
+}
 
+.form-tabs-list .nav-link.active {
+  color: #01345a !important;
+  border-bottom: 2px solid #01345a !important; /* active underline */
+}
 
+.form-tabs-list .nav-link:hover {
+  color: #01345a !important;
+}
 
+/* 1) Header text color */
+.form-grid-container .grid-heading-row .static-area,
+.form-grid-container .grid-heading-row span {
+  color: #01345a !important;
+  font-weight: 600; /* optional: make it bold */
+}
+
+/* 2) Alternating row background colors */
+.form-grid-container .grid-body .grid-row:nth-child(3n+1) {
+  background-color: #f9fafb;
+}
+
+.form-grid-container .grid-body .grid-row:nth-child(3n+2) {
+  background-color: #f1f5f9;
+}
+
+.form-grid-container .grid-body .grid-row:nth-child(3n+3) {
+  background-color: #e9eff5;
+}
+
+/* ================================
+   Login
+================================== */
 
 
 /* Login page background gradient */
@@ -798,7 +865,7 @@ button.btn.btn-primary.primary-action {
 .form-control {
   border: 1px solid #01345a !important;
   color: #01345a !important;
-   width: 80% !important;
+   width: 95% !important;
 }
 
 /* General text color */
@@ -852,3 +919,86 @@ button.btn.btn-primary.primary-action {
   border-color: #01345a !important;
   color: #fff !important;
 }
+
+
+/* ================================
+   Some edits
+================================== */
+/* Change list view row separators */
+.list-row-border {
+  border-color: #01345a !important;
+  background-color: #01345a !important;
+  height: 1px; /* ensures a solid thin line */
+}
+
+/* Change header underline if needed */
+.list-row-head {
+  border-bottom: 2px solid #01345a !important;
+}
+
+/* Optional: change filters bar separator */
+.page-form,
+.standard-filter-section,
+.filter-section {
+  border-bottom: 1px solid #01345a !important;
+}
+/* Paging button styles */
+.level-left .btn-group .btn-paging {
+  background-color: #01345a !important;
+  color: #9fdfff !important;
+  border: 1px solid #01345a !important;
+}
+
+/* Hover + active state */
+.level-left .btn-group .btn-paging:hover,
+.level-left .btn-group .btn-paging:focus {
+  background-color: #012d4d !important;
+  border-color: #012d4d !important;
+  color: #ffffff !important; /* brighter text on hover */
+}
+
+/* The selected (active/info) button */
+.level-left .btn-group .btn-paging.btn-info {
+  background-color: #012d4d !important;
+  color: #ffffff !important;
+  border: 1px solid #012d4d !important;
+}
+/* comment */
+.ql-container {
+  border: 1px solid #01345a !important;
+  border-radius: 6px;
+}
+/* ================================
+   Flash message
+================================== */
+/* Modal border and outline */
+.modal-dialog.msgprint-dialog .modal-content {
+  border: 2px solid #01345a !important;
+  box-shadow: 0 0 12px rgba(1, 52, 90, 0.4) !important;
+}
+
+/* Modal header border + text */
+.modal-dialog.msgprint-dialog .modal-header {
+  border-bottom: 1px solid #01345a !important;
+  color: #01345a !important;
+}
+
+/* Modal title */
+.modal-dialog.msgprint-dialog .modal-title {
+  color: #01345a !important;
+  font-weight: bold;
+}
+
+/* Modal body text */
+.modal-dialog.msgprint-dialog .modal-body,
+.modal-dialog.msgprint-dialog .modal-body .msgprint {
+  color: #01345a !important;
+}
+
+/* Modal footer border */
+.modal-dialog.msgprint-dialog .modal-footer {
+  border-top: 1px solid #01345a !important;
+  color: #01345a !important;
+}
+
+

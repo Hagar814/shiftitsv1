@@ -271,7 +271,6 @@ desiredOrder.forEach(wantedName => {
     // Inject into navbar
     logo.insertAdjacentElement('afterend', container);
 
-    console.log('[✔] Reports submenu styled like modules');
   });
 
 
