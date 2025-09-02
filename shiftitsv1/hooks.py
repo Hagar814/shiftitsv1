@@ -29,8 +29,6 @@ app_include_css = "/assets/shiftitsv1/css/shift.css"
 #app_include_js = "/assets/shiftitsv1/js/shift.js"
 app_include_js = [
     "/assets/shiftitsv1/js/shift.js",
-    # "/assets/shiftitsv1/js/router.js",
-    # "/assets/shiftitsv1/js/workspace.js"
     ]
 
 override_doctype_class = {

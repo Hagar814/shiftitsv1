@@ -63,6 +63,7 @@ function addModuleSubmenu(moduleName, items) {
 
 // Accounting
 addModuleSubmenu("Accounting", [
+  { label: "Chart of Account", href: "/app/account/view/tree" },
   { label: "Payment Entry", href: "/app/payment-entry" },
   { label: "Journal Entry", href: "/app/journal-entry" },
   { label: "Sales Invoice", href: "/app/sales-invoice" },

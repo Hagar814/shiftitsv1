@@ -798,6 +798,10 @@ button.btn.btn-primary.primary-action {
   background-color: #e9eff5;
 }
 
+.page-form .standard-filter-section .form-control {
+  width: 80% !important; /* make input fit the smaller container */
+}
+
 /* ================================
    Documnet
 ================================== */
@@ -865,9 +869,16 @@ button.btn.btn-primary.primary-action {
 .form-control {
   border: 1px solid #01345a !important;
   color: #01345a !important;
-   width: 95% !important;
+   width: 100% !important;
 }
 
+/* Only affect login page inputs */
+.login-content .form-control {
+  border: 1px solid #01345a !important;
+  color: #01345a !important;
+  width: 100% !important;   /* adjust to whatever size you want */
+  margin: 0 auto;          /* center inside the field wrapper */
+}
 /* General text color */
 .page-card,
 .page-card-head h4,
