@@ -20,7 +20,9 @@ app_logo_url = "/assets/shiftitsv1/images/Shift.png"
 # 		"has_permission": "shiftitsv1.api.permission.has_app_permission"
 # 	}
 # ]
-
+doctype_js = {
+    "Item": "public/js/item.js"
+}
 # Includes in <head>
 # ------------------
 # desk_include_js = "/assets/shiftitsv1/js/home/router.js"
